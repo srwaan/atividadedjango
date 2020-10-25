@@ -1,0 +1,29 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+	<h1>Partidas Cadastradas</h1><br><br>
+	<table class="table table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Time 1</th>
+			<th scope="col">Time 2</th>
+			<th scope="col">Data e Hora da partida</th>
+			<th scope="col"></th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for partida in partidas %}
+				<tr>
+					<td>{{partida.time1}}</td> 
+					<td>{{partida.time2}}</td>
+					<td>{{partida.data_partida}}</td>
+					{% if usuario.saldo >= 5 %}
+						<td><a href="{% url 'fazerAposta' partida.id %}">Apostar</a></td>
+					{% else %}
+						<td>Saldo insuficiente</td>
+					{% endif %}
+				</tr>
+			{% endfor %}	
+		</tbody>
+	</table>
+{% endblock %}
+

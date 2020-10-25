@@ -1,0 +1,31 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+<title>Admin Apostas</title>
+<span><h5>Hello, <b>{{request.user}}</b>! Deseja sair?</span>
+	<span><b><a href="{% url 'logout' %}">Logout</a></b></h5></span><br>
+<h1>Admin - Apostas</h1><br>
+<table class="table table-striped">
+	<thead>
+	  <tr>
+		<th scope="col">Time 1</th>
+		<th scope="col">Time 2</th>
+		<th scope="col">Data e Hora</th>
+		<th scope="col"></th>
+	  </tr>
+	</thead>
+	<tbody>
+     {% for partida in partidas %}
+			<tr>
+				<td>{{partida.time1}}</td> 
+				<td>{{partida.time2}}</td>
+				<td>{{partida.data_partida}}</td>
+				<td><a href="{% url 'partidaApostasFeitas' partida.id %}">Ver Apostas</a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+  </table>	
+{% endblock %}
+
+
+
+

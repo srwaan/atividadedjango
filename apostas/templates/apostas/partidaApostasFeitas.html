@@ -1,0 +1,28 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+	<title>Apostas {{partida}}</title>
+	<h2>Apostas da Partida {{partida}}</h2>
+	<h3>Resultado - {{partida.placar1}} x {{partida.placar2}} </h3><br>
+	<h4><a href="{% url 'distribuirPremio' partida.id %}">Distribuir o premio </a></h4><br><br>
+		<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th scope="col">Usuário</th>
+				<th scope="col">Placar - Time 1</th>
+				<th scope="col">Placar - Time 2</th>
+				<th scope="col">Data da Aposta</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for aposta in apostas_partida %}
+					<tr>
+						<th>{{aposta.usuario}}</th> 
+						<th>{{aposta.placar1}}</th>
+						<th>{{aposta.placar2}}</th>
+						<th>{{aposta.data_criacao}}</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+{% endblock %}
+

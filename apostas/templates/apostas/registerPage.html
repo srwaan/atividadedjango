@@ -1,0 +1,32 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+	<title>Registre-se</title>
+	<h1>Registre-se</h1><br>
+
+	<div class="w-25 p-3">
+		<form method="POST" action ="">
+			{% csrf_token %}
+			<div class="form-group">
+				{{form.username.label}}*
+				<input type="username" class="form-control" name="username" >
+			</div>
+			<div class="form-group">
+				{{form.email.label}}
+				<input type="email" class="form-control" name="email">
+			</div>
+			<div class="form-group">
+				{{form.password1.label}}*
+				<input type="password" class="form-control" name="password1">
+			</div>
+			<div class="form-group">
+				{{form.password2.label}}*
+				<input type="password" class="form-control" name="password2">
+			</div>
+			<input type="submit" class="btn btn-primary" label="Enviar">
+			<p>
+			{{form.errors}}
+			<p>
+			Já tem uma conta? <a href="{% url 'loginPage' %}">Entrar</a>
+		</form>
+	</div>
+{% endblock %}

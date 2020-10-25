@@ -1,0 +1,21 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+	<h2>Realizar Aposta</h2> <br>
+	<h3>Partida: {{partida.time1}} X {{partida.time2}} </h3> 
+	{% if usuario.saldo >= 5 %}
+
+		{% if fez_aposta %}
+			<h1>VOCÊ JÁ APOSTOU NESSA PARTIDA!</h1>
+		{% else %}	
+			<form action='' method='POST'>
+				<div class="w-25 p-3"> 
+					{% csrf_token %}
+					{{formulario}}
+					<input type="submit" class="btn btn-primary" name="Submit">
+				</div>
+			</form>
+		{% endif  %}		
+	{% else %}
+		<h1>SALDO INSUFICIENTE</h1>
+	{% endif %}
+	{% endblock %}

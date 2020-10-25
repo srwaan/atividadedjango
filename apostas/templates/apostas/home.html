@@ -1,0 +1,35 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+	<title>Página inicial</title>
+	<span><h5>Hello, <b>{{request.user}}</b>! Deseja sair?</span>
+	<span><b><a href="{% url 'logout' %}">Logout</a></b></h5></span>
+
+	<h3><b>{{usuario.nome}}</b>, você possui <b>R${{usuario.saldo}}</b> em saldo para apostas</h3><br>
+	
+	<span><h4>Partidas disponíveis para aposta: <a href="{% url 'partidasCadastradas' %}">Aqui</a></h4></span><br>
+	<h1>Suas Apostas</h1>
+	<table class="table table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Partida</th>
+			<th scope="col">Time 1</th>
+			<th scope="col">Time 2</th>
+			<th scope="col">Data e Hora da aposta</th>
+			<th scope="col"></th>
+		  </tr>
+		</thead>
+		<tbody>
+		 {% for aposta in apostas_usuario %}
+				<tr>
+					<th>{{aposta.partida}}</th> 
+				    <th>{{aposta.placar1}}</th>
+				    <th>{{aposta.placar2}}</th>
+				    <th>{{aposta.data_criacao}}</th>
+				</tr>
+			{% endfor %}
+		</tbody>
+	  </table>	
+
+	{% endblock %}
+
+	

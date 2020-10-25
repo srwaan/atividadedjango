@@ -1,0 +1,28 @@
+{% extends 'apostas/base.html' %}
+{% block content %}
+	<title>Login</title>
+	<div class = "login">
+		<h2>Entrar</h2><br>
+		<form method='POST'>
+			{% csrf_token %}
+			{{form.as_p}}
+			
+			<div class="w-25 p-3">
+				<div class="form-group">
+					<label for="username">Username*</label>
+					<input type="username" class="form-control" name="username" placeholder="Digite seu nome de usuário">	  
+				</div>
+				<div class="form-group">
+					<label for="password">Password*</label>
+					<input type="password" class="form-control" name="password" placeholder="Digite a sua senha">
+				</div>
+				<input type="submit" class="btn btn-primary" label="Enviar">
+				<p> Não tem uma conta? <a href="{% url 'registerPage' %}">Registre-se</a></p>
+				{% for message in messages %}
+					<p>{{message}}</p>
+					{% endfor %}
+			</div>
+		  </form>
+	</div>
+</div>
+{% endblock %}
